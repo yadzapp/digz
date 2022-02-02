@@ -260,17 +260,29 @@ class Valve extends Core {
                 state.password = true;
             }
         }
-
+        
+        // DayZ embeds some of the server information inside the tags attribute
         if (appId === AppId.DayZ) {
-            state.raw.dayzMods = this.readDayzMods(Buffer.from(dayZPayload));
 
             if (state.raw.tags) {
+                state.raw.dlcEnabled = false
+                state.raw.firstPerson = false
+
                 for (const tag of state.raw.tags) {
                     if (tag.startsWith('lqs')) {
                         const value = parseInt(tag.replace('lqs', ''));
                         if (!isNaN(value)) {
                             state.raw.queue = value;
                         }
+                    }
+                    if (tag.includes('no3rd')) {
+                        state.raw.firstPerson = true;
+                    }
+                    if (tag.includes('isDLC')) {
+                        state.raw.dlcEnabled = true;
+                    }
+                    if (tag.includes(':')) {
+                        state.raw.time = tag;
                     }
                     if (tag.startsWith('etm')) {
                         const value = parseInt(tag.replace('etm', ''));
@@ -286,6 +298,8 @@ class Valve extends Core {
                     }
                 }
             }
+
+            state.raw.dayzMods = this.readDayzMods(Buffer.from(dayZPayload));
         }
     }
 
@@ -375,10 +389,14 @@ class Valve extends Core {
             if (sortedPlayers.length) state.bots.push(sortedPlayers.pop());
             else state.bots.push({});
         }
-        while(state.players.length < numPlayers || sortedPlayers.length) {
-            if (sortedPlayers.length) state.players.push(sortedPlayers.pop());
-            else state.players.push({});
-        }
+        //
+        // currently is not possible to get players names in dayz servers
+        // uncomment the 'while' below in case this may have changed
+        //
+        // while(state.players.length < numPlayers || sortedPlayers.length) {
+        //     if (sortedPlayers.length) state.players.push(sortedPlayers.pop());
+        //     else state.players.push({});
+        // }
     }
 
     /**
