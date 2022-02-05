@@ -13,14 +13,16 @@ npm install digz
 ```
 
 ```javascript
-const digz = require('digz');
+const digz = require('digz')
 digz.query({
-    host: 'mc.example.com'
-}).then((state) => {
-    console.log(state);
+  host: '168.100.162.110',
+  port: '2303',
+  requestRules: true
+}).then((response) => {
+  console.log(response)
 }).catch((error) => {
-    console.log("Server is offline");
-});
+  console.log('Server is offline')
+})
 ```
 
 ### Query Options
@@ -104,7 +106,7 @@ some extremely strict firewalls, or within a docker container (where you only wi
 To use a fixed listen udp port, construct a new Digz object like this:
 ```
 const digz = new Digz({
-    listenUdpPort: 13337
+  listenUdpPort: 13337
 });
 digz.query(...)
 ```
@@ -120,8 +122,8 @@ npm install digz -g
 
 After installing digz globally, you can call digz via the command line:
 ```shell
-digz --type minecraft mc.example.com:11234
+digz 168.100.162.110:2303 --pretty --requestRules
 ```
 
 The output of the command will be in JSON format. Additional advanced parameters can be passed in
-as well: `--debug`, `--pretty`, `--socketTimeout 5000`, etc.
+as well: `--debug`, `--pretty`, `--socketTimeout 5000`, `--requestRules`, etc.
