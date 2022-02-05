@@ -1,5 +1,5 @@
 {
-    "name": "gamedig",
+    "name": "digz",
     "description": "Query for the status of any game server in Node.JS",
     "tags": [
         "srcds",
@@ -17,20 +17,20 @@
         "game server",
         "gameserverquery",
         "serverquery",
-        "terraria",
-        "counter strike",
-        "csgo",
-        "minecraft"
+        "dayz",
+        "dzsa",
+        "dayz standalone",
+        "dayz mod"
     ],
     "main": "lib/index.js",
-    "author": "GameDig Contributors",
-    "version": "3.0.7",
+    "author": "digz and gamedig Contributors",
+    "version": "1.0.0",
     "repository": {
         "type": "git",
-        "url": "https://github.com/gamedig/node-gamedig.git"
+        "url": "https://github.com/podrivo/digz.git"
     },
     "bugs": {
-        "url": "https://github.com/gamedig/node-gamedig/issues"
+        "url": "https://github.com/podrivo/digz/issues"
     },
     "license": "MIT",
     "engines": {
@@ -49,13 +49,11 @@
         "varint": "^5.0.0"
     },
     "bin": {
-        "gamedig": "bin/gamedig.js"
+        "digz": "digz.js"
     },
     "files": [
-        "bin/gamedig.js",
+        "digz.js",
         "lib/",
-        "protocols/",
-        "games.txt",
         "LICENSE",
         "README.md"
     ],

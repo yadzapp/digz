@@ -1,8 +1,6 @@
 digz - DayZ server query library
 ---
-<!-- node-GameDig is a game server query library, capable of querying for the status of
-nearly any game or voice server. If a server makes its status publically available,
-GameDig can fetch it for you. -->
+digz is a DayZ Standalone server query library. It is a fork of node-gamedig, but focus on providing a simpler DayZ server output.
 
 digz is available as a node.js module, as well as a
 [command line executable](#usage-from-command-line).
@@ -15,8 +13,8 @@ npm install digz
 ```
 
 ```javascript
-const Gamedig = require('gamedig');
-Gamedig.query({
+const digz = require('digz');
+digz.query({
     host: 'mc.example.com'
 }).then((state) => {
     console.log(state);
@@ -55,7 +53,7 @@ The returned state object will contain the following keys:
 * **players**: array of objects
   * **name**: string - If the player's name is unknown, the string will be empty.
   * **raw**: object - Additional information about the player if available (unstable)
-    * The content of this field MAY change on a per-protocol basis between GameDig patch releases (although not typical).
+    * The content of this field MAY change on a per-protocol basis between digz patch releases (although not typical).
 * **bots**: array of objects - Same schema as `players`
 * **connect**: string
   * This will typically include the game's `ip:port`
@@ -68,7 +66,7 @@ The returned state object will contain the following keys:
   * This value is derived from the RTT of one of the query packets, which is usually quite accurate, but may add a bit due to server lag.
 * **raw**: freeform object (unstable)
   * Contains all information received from the server in a disorganized format.
-  * The content of this field MAY change on a per-protocol basis between GameDig patch releases (although not typical).
+  * The content of this field MAY change on a per-protocol basis between digz patch releases (although not typical).
 
 
 
@@ -82,47 +80,47 @@ Common Issues
 ### Firewalls block incoming UDP
 *(replit / docker / some VPS providers)*
 
-Most game query protocols require a UDP request and response. This means that in some environments, gamedig may not be able to receive the reponse required due to environmental restrictions.
+Most game query protocols require a UDP request and response. This means that in some environments, digz may not be able to receive the reponse required due to environmental restrictions.
 
 Some examples include:
 * Docker containers
-  * You may need to run the container in `--network host` mode so that gamedig can bind a UDP listen port.
-  * Alternatively, you can forward a single UDP port to your container, and force gamedig to listen on that port using the
+  * You may need to run the container in `--network host` mode so that digz can bind a UDP listen port.
+  * Alternatively, you can forward a single UDP port to your container, and force digz to listen on that port using the
   instructions in the section down below.
 * replit
   * Most online IDEs run in an isolated container, which will never receive UDP responses from outside networks.
 * Various VPS / server providers
   * Even if your server provider doesn't explicitly block incoming UDP packets, some server hosts block other server hosts from connecting to them for DDOS-mitigation and anti-botting purposes.
 
-### Gamedig doesn't work in the browser
-Gamedig cannot operate within a browser. This means you cannot package it as part of your webpack / browserify / rollup / parcel package.
+### digz doesn't work in the browser
+digz cannot operate within a browser. This means you cannot package it as part of your webpack / browserify / rollup / parcel package.
 Even if you were able to get it packaged into a bundle, unfortunately no browsers support the UDP protocols required to query server status
-from most game servers. As an alternative, we'd recommend using gamedig on your server-side, then expose your own API to your webapp's frontend
+from most game servers. As an alternative, we'd recommend using digz on your server-side, then expose your own API to your webapp's frontend
 displaying the status information. If your application is thin (with no constant server component), you may wish to investigate a server-less lambda provider.
 
 ### Specifying a listen UDP port override
 In some very rare scenarios, you may need to bind / listen on a fixed local UDP port. The is usually not needed except behind
 some extremely strict firewalls, or within a docker container (where you only wish to forward a single UDP port).
-To use a fixed listen udp port, construct a new Gamedig object like this:
+To use a fixed listen udp port, construct a new Digz object like this:
 ```
-const gamedig = new Gamedig({
+const digz = new Digz({
     listenUdpPort: 13337
 });
-gamedig.query(...)
+digz.query(...)
 ```
 
 Usage from Command Line
 ---
 
 Want to integrate server queries from a batch script or other programming language?
-You'll still need npm to install gamedig:
+You'll still need npm to install digz:
 ```shell
-npm install gamedig -g
+npm install digz -g
 ```
 
-After installing gamedig globally, you can call gamedig via the command line:
+After installing digz globally, you can call digz via the command line:
 ```shell
-gamedig --type minecraft mc.example.com:11234
+digz --type minecraft mc.example.com:11234
 ```
 
 The output of the command will be in JSON format. Additional advanced parameters can be passed in
