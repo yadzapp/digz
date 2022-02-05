@@ -1,64 +1,64 @@
 {
-    "name": "digz",
-    "description": "Query for the status of any game server in Node.JS",
-    "tags": [
-        "srcds",
-        "query",
-        "game",
-        "utility",
-        "util",
-        "server",
-        "gameserver",
-        "node",
-        "nodejs",
-        "game-server-query",
-        "game server query",
-        "server query",
-        "game server",
-        "gameserverquery",
-        "serverquery",
-        "dayz",
-        "dzsa",
-        "dayz standalone",
-        "dayz mod"
-    ],
-    "main": "lib/index.js",
-    "author": "digz and gamedig Contributors",
-    "version": "1.0.0",
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/podrivo/digz.git"
-    },
-    "bugs": {
-        "url": "https://github.com/podrivo/digz/issues"
-    },
-    "license": "MIT",
-    "engines": {
-        "node": ">=12.0.0"
-    },
-    "dependencies": {
-        "cheerio": "^1.0.0-rc.3",
-        "compressjs": "^1.0.2",
-        "gbxremote": "^0.2.1",
-        "got": "^11.5.1",
-        "iconv-lite": "^0.6.2",
-        "long": "^4.0.0",
-        "minimist": "^1.2.5",
-        "moment": "^2.27.0",
-        "punycode": "^2.1.1",
-        "varint": "^5.0.0"
-    },
-    "bin": {
-        "digz": "digz.js"
-    },
-    "files": [
-        "digz.js",
-        "lib/",
-        "LICENSE",
-        "README.md"
-    ],
-    "devDependencies": {
-        "@types/cheerio": "^0.22.21",
-        "@types/node": "^12.20.7"
-    }
+  "name": "digz",
+  "description": "Query for the status of any game server in Node.JS",
+  "tags": [
+    "srcds",
+    "query",
+    "game",
+    "utility",
+    "util",
+    "server",
+    "gameserver",
+    "node",
+    "nodejs",
+    "game-server-query",
+    "game server query",
+    "server query",
+    "game server",
+    "gameserverquery",
+    "serverquery",
+    "dayz",
+    "dzsa",
+    "dayz standalone",
+    "dayz mod"
+  ],
+  "main": "lib/index.js",
+  "author": "digz and gamedig Contributors",
+  "version": "1.0.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/podrivo/digz.git"
+  },
+  "bugs": {
+    "url": "https://github.com/podrivo/digz/issues"
+  },
+  "license": "MIT",
+  "engines": {
+    "node": ">=12.0.0"
+  },
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.3",
+    "compressjs": "^1.0.2",
+    "gbxremote": "^0.2.1",
+    "got": "^11.5.1",
+    "iconv-lite": "^0.6.2",
+    "long": "^4.0.0",
+    "minimist": "^1.2.5",
+    "moment": "^2.27.0",
+    "punycode": "^2.1.1",
+    "varint": "^5.0.0"
+  },
+  "bin": {
+    "digz": "digz.js"
+  },
+  "files": [
+    "digz.js",
+    "lib/",
+    "LICENSE",
+    "README.md"
+  ],
+  "devDependencies": {
+    "@types/cheerio": "^0.22.21",
+    "@types/node": "^12.20.7"
+  }
 }
