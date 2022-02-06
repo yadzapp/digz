@@ -1,6 +1,6 @@
-digz - DayZ server query library
+digz
 ---
-digz is a DayZ Standalone server query library. It is a fork of node-gamedig, but focus on providing a simpler DayZ server output.
+DayZ Standalone server query library, with DZSA Tools fallback request. It is a fork of [node-gamedig](https://github.com/gamedig/node-gamedig/), but focus on providing a simpler DayZ server output.
 
 digz is available as a node.js module, as well as a
 [command line executable](#usage-from-command-line).
@@ -25,38 +25,50 @@ digz.query({
 })
 ```
 
-### Query Options
+Usage from Command Line
+---
 
-**Typical**
+Want to integrate server queries from a batch script or other programming language?
+You'll still need npm to install digz:
+```shell
+npm install digz -g
+```
 
-* **host**: string - Hostname or IP of the game server
-* **port**: number (optional) - Connection port or query port for the game server. Some
-games utilize a separate "query" port. If specifying the game port does not seem to work as expected, passing in
-this query port may work instead. (defaults to protocol default port)
+After installing digz globally, you can call digz via the command line:
+```shell
+digz 168.100.162.110:2303 --pretty
+```
 
-**Advanced**
+The output of the command will be in JSON format. Additional advanced parameters can be passed in
+as well: `--debug`, `--pretty`, `--socketTimeout 5000`, etc.
 
-* **maxAttempts**: number - Number of attempts to query server in case of failure. (default 1)
-* **socketTimeout**: number - Milliseconds to wait for a single packet. Beware that increasing this
- will cause many queries to take longer even if the server is online. (default 2000)
-* **attemptTimeout**: number - Milliseconds allowed for an entire query attempt. This timeout is not commonly hit,
- as the socketTimeout typically fires first. (default 10000)
-* **givenPortOnly**: boolean - Only attempt to query server on given port. (default false)
-* **debug**: boolean - Enables massive amounts of debug logging to stdout. (default false)
+<!-- ### Query Options -->
+Query Options
+---
 
-### Return Value
+**Default**
+
+* **host**: string - Hostname or IP of the server
+* **port**: number - Connection port or query port for the server. Make sure it's the query port and not the game port.
+
+**Advanced options**
+
+* **pretty**: boolean - default false - Make response more readable
+* **maxAttempts**: number - default 1 - Number of attempts to query server in case of failure.
+* **socketTimeout**: number - default 2000 - Milliseconds to wait for a single packet. Beware that increasing this
+ will cause many queries to take longer even if the server is online.
+* **attemptTimeout**: number - default 10000 - Milliseconds allowed for an entire query attempt. This timeout is not commonly hit,
+ as the socketTimeout typically fires first.
+* **givenPortOnly**: boolean - default false - Only attempt to query server on given port.
+* **debug**: boolean - default false - Enables massive amounts of debug logging to stdout.
+
+Response
+---
 
 The returned state object will contain the following keys:
 
 * **name**: string - Server name
 * **map**: string - Current server game map
-* **password**: boolean - If a password is required
-* **maxplayers**: number
-* **players**: array of objects
-  * **name**: string - If the player's name is unknown, the string will be empty.
-  * **raw**: object - Additional information about the player if available (unstable)
-    * The content of this field MAY change on a per-protocol basis between digz patch releases (although not typical).
-* **bots**: array of objects - Same schema as `players`
 * **connect**: string
   * This will typically include the game's `ip:port`
   * The port will reflect the server's game port, even if your request specified the game's query port in the request.
@@ -66,17 +78,28 @@ The returned state object will contain the following keys:
   * Note that this is not the RTT of an ICMP echo, as ICMP packets are often blocked by NATs and node
     has poor support for raw sockets.
   * This value is derived from the RTT of one of the query packets, which is usually quite accurate, but may add a bit due to server lag.
-* **raw**: freeform object (unstable)
-  * Contains all information received from the server in a disorganized format.
-  * The content of this field MAY change on a per-protocol basis between digz patch releases (although not typical).
+* **password**: boolean - If a password is required
+* **numplayers**: number
+* **maxplayers**: number
+* **queue**: number
+* **official**: boolean - If server is official or not
+* **version**: string - Game version the server is running
+* **firstPerson**: boolean
+* **dlcEnabled**: boolean - If server needs Livonia DLC
+* **dayAcceleration**: number
+* **nightAcceleration**: number
+* **time**: string - Current server time
+* **mods**: array
+  * **title**: string
+  * **id**: number - Mod's Steam Workshop id
+
+node-gamedig
+---
+
+This library is built on top of [node-gamedig](https://github.com/gamedig/node-gamedig/), a more broad game server library. This wouldn't be possible if it wasn't for all the work they built. I decided to put this togeter, because DayZ has it's own misteries and needs a little more love to have fallback options and a simpler query response.
 
 
-
-### <a name="valve"></a>Valve Protocol
-For many valve games, additional 'rules' may be fetched into the unstable `raw` field by passing the additional
-option: `requestRules: true`. Beware that this may increase query time.
-
-Common Issues
+<!-- Common Issues
 ---
 
 ### Firewalls block incoming UDP
@@ -109,21 +132,4 @@ const digz = new Digz({
   listenUdpPort: 13337
 });
 digz.query(...)
-```
-
-Usage from Command Line
----
-
-Want to integrate server queries from a batch script or other programming language?
-You'll still need npm to install digz:
-```shell
-npm install digz -g
-```
-
-After installing digz globally, you can call digz via the command line:
-```shell
-digz 168.100.162.110:2303 --pretty --requestRules
-```
-
-The output of the command will be in JSON format. Additional advanced parameters can be passed in
-as well: `--debug`, `--pretty`, `--socketTimeout 5000`, `--requestRules`, etc.
+``` -->
