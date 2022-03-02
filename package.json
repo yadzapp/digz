@@ -24,7 +24,7 @@
   ],
   "main": "lib/index.js",
   "author": "digz and gamedig Contributors",
-  "version": "1.1.7",
+  "version": "1.1.8",
   "repository": {
     "type": "git",
     "url": "https://github.com/podrivo/digz.git"
