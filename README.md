@@ -84,4 +84,4 @@ This library is built on top of [node-gamedig](https://github.com/gamedig/node-g
 
 License
 ---
-[MIT](LICENSE)
+Released under the [MIT license](LICENSE).
