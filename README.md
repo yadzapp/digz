@@ -38,6 +38,7 @@ Query parameters
 | **attemptTimeout** | number | 10000 | Milliseconds allowed for an entire query attempt. This timeout is not commonly hit, as the socketTimeout typically fires first. |
 | **givenPortOnly** | boolean | false | Only attempt to query server on given port. |
 | **debug** | boolean | false | Enables massive amounts of debug logging to stdout. |
+| **pingOnly** | boolean | false | Only gets ping in the response. |
 
 
 Response
