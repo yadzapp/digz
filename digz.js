@@ -4,7 +4,7 @@ const Minimist = require('minimist')
 const Digz = require('./lib')
 
 const argv = Minimist(process.argv.slice(2), {
-  boolean: ['pretty','debug','givenPortOnly','requestRules'],
+  boolean: ['pretty','debug','givenPortOnly','pingOnly'],
   string: ['guildId','listenUdpPort']
 });
 
