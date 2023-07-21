@@ -24,7 +24,7 @@
   ],
   "main": "lib/index.js",
   "author": "Pedro Ivo Hudson <hello@podrivo.com> and node-gamedig Contributors",
-  "version": "1.1.12",
+  "version": "1.1.13",
   "repository": {
     "type": "git",
     "url": "https://github.com/yadzapp/digz.git"
