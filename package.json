@@ -23,8 +23,8 @@
     "dayz mod"
   ],
   "main": "lib/index.js",
-  "author": "Pedro Ivo Hudson <hello@podrivo.com> and node-gamedig Contributors",
-  "version": "1.1.13",
+  "author": "Pedro Ivo Hudson <@podrivo> and node-gamedig contributors",
+  "version": "1.1.14",
   "repository": {
     "type": "git",
     "url": "https://github.com/yadzapp/digz.git"
