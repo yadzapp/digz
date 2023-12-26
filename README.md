@@ -1,6 +1,6 @@
 # digz library
 
-DayZ server query library, with DZSA Tools fallback request. It is built on top of [node-gamedig](https://github.com/gamedig/node-gamedig/), but focus on providing a simpler DayZ server output.
+DayZ server query library, with [DZSA Mod Download Server](https://dayzsalauncher.com/#/tools) fallback request. It is built on top of [node-gamedig](https://github.com/gamedig/node-gamedig/), but focus on providing a simpler DayZ server output.
 
 digz is available as a node.js module, as well as a
 [command line executable](#usage-from-command-line).
@@ -50,19 +50,23 @@ The returned state object will contain the following keys:
 |:---|:---|:---|
 | **name** | string | Server name. |
 | **map** | string | Map name. |
-| **connect** | string | IP:PORT to connect. |
-| **ping** | number | Round trip time to the server in milliseconds. |
 | **password** | boolean | If password is required. |
-| **numplayers** | number | Number of players connected. |
-| **maxplayers** | number | Maximum number of connected players. |
-| **queue** | number | Number of players in queue. |
 | **official** | boolean | If server is official or not. |
 | **version** | string | Game version the server is running. |
-| **firstPerson** | boolean | If server is first person only. |
-| **dlcEnabled** | boolean | If server needs Livonia DLC. |
-| **dayAcceleration** | number | In-game day time acceleration. |
-| **nightAcceleration** | number | In-game night time acceleration. |
+| **first_person** | boolean | If server is first person only. |
+| **dlc_enabled** | boolean | If server needs Livonia DLC. |
+| **connect** | string | IP:PORT to connect. |
+| **ip** | string | Server IP. |
+| **port_game** | string | Server game port. |
+| **port_query** | string | Server query port. |
+| **ping** | number | Round trip time to the server in milliseconds. |
+| **players_max** | number | Maximum number of connected players. |
+| **players_connected_info** | number | Number of players connected, via [A2S_INFO](https://developer.valvesoftware.com/wiki/Server_queries#A2S_INFO). |
+| **players_connected_players** | number | Number of players connected, via [A2S_PLAYER](https://developer.valvesoftware.com/wiki/Server_queries#A2S_PLAYER). |
+| **players_queue** | number | Number of players in queue. |
 | **time** | string | Current server day time. |
+| **day_acceleration** | number | In-game day time acceleration. |
+| **night_acceleration** | number | In-game night time acceleration. |
 | **mods** | array | Title and Steam Workshop ID. |
 
 Usage from Command Line
