@@ -1,6 +1,6 @@
 {
   "name": "digz",
-  "description": "DayZ server query library, with DZSA Tools fallback.",
+  "description": "DayZ server query library, with a simpler server output.",
   "tags": [
     "srcds",
     "query",
@@ -18,13 +18,12 @@
     "gameserverquery",
     "serverquery",
     "dayz",
-    "dzsa",
     "dayz standalone",
     "dayz mod"
   ],
   "main": "lib/index.js",
   "author": "Pedro Ivo Hudson <@podrivo> and node-gamedig contributors",
-  "version": "1.1.17",
+  "version": "1.1.18",
   "repository": {
     "type": "git",
     "url": "https://github.com/yadzapp/digz.git"

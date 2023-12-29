@@ -63,6 +63,7 @@ The returned state object will contain the following keys:
 | **players_max** | number | Maximum number of connected players. |
 | **players_connected_info** | number | Number of players connected, via [A2S_INFO](https://developer.valvesoftware.com/wiki/Server_queries#A2S_INFO). |
 | **players_connected_player** | number | Number of players connected, via [A2S_PLAYER](https://developer.valvesoftware.com/wiki/Server_queries#A2S_PLAYER). |
+| **players_connected** | number | Number of players connected, via [A2S_PLAYER](https://developer.valvesoftware.com/wiki/Server_queries#A2S_PLAYER). |
 | **players_queue** | number | Number of players in queue. |
 | **time** | string | Current server day time. |
 | **day_acceleration** | number | In-game day time acceleration. |
